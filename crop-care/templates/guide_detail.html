@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}{{ guide.title }}{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <h2>{{ guide.title }}</h2>
+    <img src="{{ url_for('static', filename='images/' + (guide.image if guide.image is defined else 'default.jpg')) }}" alt="{{ guide.title }}">
+
+
+</section>
+
+<section class="crop-details">
+    <p><strong>Description:</strong> {{ guide.content }}</p>
+
+    {% if guide.price %}
+    <p><strong>Price:</strong> {{ guide.price }}</p>
+    {% endif %}
+
+    {% if guide.diseases %}
+    <p><strong>Diseases:</strong></p>
+    <ul>
+        {% for d in guide.diseases %}
+            <li>{{ d }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if guide.tips %}
+    <p><strong>Tips:</strong></p>
+    <ul>
+        {% for tip in guide.tips %}
+            <li>{{ tip }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <br>
+    <a href="{{ url_for('crop_guides') }}" class="btn">← Back to Guides</a>
+</section>
+{% endblock %}

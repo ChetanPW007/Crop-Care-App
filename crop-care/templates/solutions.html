@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}Problems & Solutions{% endblock %}
+
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+{% block content %}
+<section class="page-header">
+  <h2>Crop Problems & Solutions</h2>
+  <p>Find solutions and best fertilizers for common crop diseases.</p>
+</section>
+
+<section class="solution-filter">
+  <form method="GET" action="{{ url_for('solutions') }}" class="filter-form">
+    <select name="crop_id">
+      <option value="">All Crops</option>
+      {% for crop in crops %}
+      <option value="{{ crop.id }}" {% if request.args.get('crop_id') == crop.id|string %}selected{% endif %}>
+        {{ crop.name }}
+      </option>
+      {% endfor %}
+    </select>
+
+    <div class="search-input-wrapper">
+      <input type="text" name="search_query" placeholder="Search problems or crops..."
+        value="{{ request.args.get('search_query', '') }}" autocomplete="off"
+        aria-label="Search problems or crops">
+      <button type="submit" class="camera-btn" title="Search">
+        <i class="fa fa-camera"></i>
+      </button>
+    </div>
+  </form>
+</section>
+
+<section class="problem-list">
+  {% if problems %}
+    {% for problem in problems %}
+      <details class="problem-card">
+        <summary>
+          <strong>{{ problem.crop_name }}:</strong> {{ problem.problem }}
+        </summary>
+        <div class="solution-content">
+          {% if problem.images %}
+          <div class="solution-images">
+  {% for img in problem.images %}
+    <img src="{{ url_for('static', filename='images/' ~ img) }}"
+         alt="{{ problem.crop_name }} problem image"
+         class="solution-crop-img">
+  {% endfor %}
+</div>
+
+          {% endif %}
+
+          <h4>Solution:</h4>
+          <p>{{ problem.solution }}</p>
+
+          <h4>Recommended Fertilizer:</h4>
+          <p>{{ problem.fertilizer }}</p>
+        </div>
+      </details>
+    {% endfor %}
+  {% else %}
+    <p>No problems found for the selected crop or search term.</p>
+  {% endif %}
+</section>
+{% endblock %}

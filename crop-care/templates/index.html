@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <h2>Your Comprehensive Agricultural Companion</h2>
+        <p>Get expert guidance, market insights, and solutions for all your crop-related challenges.</p>
+        <a href="{{ url_for('guides') }}" class="btn">Explore Guides</a>
+    </div>
+</section>
+
+<section class="features">
+    <div class="feature-card">
+        <h3>Crop Guides</h3>
+        <p>Detailed cultivation guides for various crops including planting, care, and harvesting.</p>
+    </div>
+    <div class="feature-card">
+        <h3>Market Prices</h3>
+        <p>Real-time market prices for crops and fertilizers in different regions.</p>
+    </div>
+    <div class="feature-card">
+        <h3>Problem Solutions</h3>
+        <p>Expert solutions for common crop diseases, pests, and growth problems.</p>
+    </div>
+</section>
+
+<section class="latest-updates">
+    <h2>Latest Market Updates</h2>
+    <div id="price-ticker" class="price-ticker">
+        <!-- Prices will be loaded via JavaScript -->
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('/api/crop_prices')
+        .then(response => response.json())
+        .then(data => {
+            const ticker = document.getElementById('price-ticker');
+            data.prices.slice(0, 5).forEach(price => {
+                const priceElement = document.createElement('div');
+                priceElement.className = 'price-item';
+                priceElement.innerHTML = `
+                    <span class="crop-name">${price.crop}</span>
+                    <span class="price">₹${price.price}/${price.unit}</span>
+                    <span class="location">${price.location}</span>
+                    <span class="date">${new Date(price.date).toLocaleDateString()}</span>
+                `;
+                ticker.appendChild(priceElement);
+            });
+        });
+});
+</script>
+{% endblock %}

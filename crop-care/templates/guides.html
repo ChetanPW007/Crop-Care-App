@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Crop Guides{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <h2>Crop Cultivation Guides</h2>
+    <p>Learn how to grow and care for various crops with our expert guides.</p>
+</section>
+
+<section class="guide-filter">
+    <form method="GET" action="{{ url_for('crop_guides') }}">
+        <select name="crop_id">
+            <option value="">All Crops</option>
+            {% for crop in crops %}
+                <option value="{{ crop.id }}" {% if request.args.get('crop_id') == crop.id|string %}selected{% endif %}>
+                    {{ crop.name }}
+                    
+                </option>
+            {% endfor %}
+        </select>
+        <button type="submit" class="btn">Filter</button>
+    </form>
+</section>
+
+<section class="guide-list">
+    {% for guide in guides %}
+        <article class="guide-card">
+            <h3>{{ guide.title }}</h3>
+            <img src="{{ url_for('static', filename='images/' + (guide.image if guide.image is defined else 'default.jpg')) }}" alt="{{ guide.title }}">
+
+
+            <div class="guide-content">
+                {{ guide.content|truncate(200) }}
+            </div>
+          <a href="{{ url_for('guide_detail', guide_id=guide.id) }}" class="read-more">Read More</a>
+
+
+        </article>
+    {% else %}
+        <p>No guides found for the selected crop.</p>
+    {% endfor %}
+</section>
+{% endblock %}

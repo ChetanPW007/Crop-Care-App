@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Crop Care - {% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body class="{% block body_class %}{% endblock %}">
+
+  {% if not hide_nav %}
+  <header>
+    <div class="container">
+      <div class="logo">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Crop Care Logo" />
+        <h1>Crop Care</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="{{ url_for('home') }}">Home</a></li>
+          <li><a href="{{ url_for('crop_guides') }}">Crop Guides</a></li>
+          <li><a href="{{ url_for('solutions') }}">Problems & Solutions</a></li>
+          <li><a href="{{ url_for('market') }}">Market Prices</a></li>
+          {% if 'user_id' in session %}
+            <li><a href="{{ url_for('profile') }}">Profile</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout ({{ session['username'] }})</a></li>
+          {% else %}
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
+  </header>
+  {% endif %}
+
+  <main class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-messages" role="alert" aria-live="polite">
+          {% for category, message in messages %}
+            <div class="flash {{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+  </main>
+
+  {% if not hide_footer %}
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Crop Care. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+  {% endif %}
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  {% block scripts %}{% endblock %}
+
+</body>
+</html>

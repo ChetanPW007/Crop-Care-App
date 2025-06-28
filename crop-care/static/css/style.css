@@ -1,0 +1,1332 @@
+/* ----------------------------------------
+   CROP CARE - FULL CSS (UPDATED)
+   Includes:
+   - Color scheme
+   - Base styles
+   - Glassmorphic search bar with neon green glow
+   - Search button with green smoke effect
+   ---------------------------------------- */
+
+:root {
+  --primary-color: #4CAF50;
+  --secondary-color: #2E7D32;
+  --accent-color: #8BC34A;
+  --dark-color: #1B5E20;
+  --light-color: #C8E6C9;
+  --text-color: #333;
+  --light-text: #f8f8f8;
+  --background: #f9f9f9;
+  --card-bg: #fff;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --error-color: #f44336;
+  --success-color: #4CAF50;
+  --warning-color: #ff9800;
+}
+
+/* Base Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-color);
+  background-color: var(--background);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Basic Links & Buttons */
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+  transition: color 0.3s;
+}
+a:hover { color: var(--secondary-color); }
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.btn:hover {
+  background-color: #3e8e41;
+  box-shadow: 0 0 8px 3px rgba(72, 187, 120, 0.7);
+}
+
+/* ----------------------------
+   GLASSMORPHIC SEARCH BAR
+---------------------------- */
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(76, 175, 80, 0.4);
+  border-radius: 50px;
+  padding: 10px;
+  max-width: 600px;
+  margin: 40px auto;
+  box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
+  position: relative;
+}
+
+.search-bar input[type="text"] {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 12px 20px;
+  color: #fff;
+  font-size: 1rem;
+  border-radius: 50px;
+}
+
+.search-bar input[type="text"]::placeholder {
+  color: #eee;
+}
+
+.search-bar button {
+  border: none;
+  background: rgba(76, 175, 80, 0.8);
+  color: #fff;
+  padding: 12px 30px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: background 0.4s ease;
+}
+
+.search-bar button::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(0, 255, 0, 0.3) 0%, transparent 70%);
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 0.5s, opacity 0.5s;
+  z-index: 0;
+}
+
+.search-bar button:hover {
+  background: rgba(46, 125, 50, 0.9);
+}
+
+.search-bar button:hover::before {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Neon Glow Edge for Search Bar */
+.search-bar {
+  box-shadow: 0 0 15px rgba(76, 255, 80, 0.4), 
+              0 0 30px rgba(0, 255, 0, 0.2);
+}
+
+/* Responsive - Stack on Mobile */
+@media (max-width: 480px) {
+  .search-bar {
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 20px;
+  }
+  .search-bar input[type="text"] {
+    margin-bottom: 10px;
+    border-radius: 30px;
+    width: 100%;
+  }
+  .search-bar button {
+    width: 100%;
+  }
+}
+
+/* -----------------------------------
+   Glassmorphic Login (Already done)
+----------------------------------- */
+
+body.login-page, body.register-page {
+  background: url('../images/login-bg.jpeg') no-repeat center center/cover;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.glass-box {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border-radius: 15px;
+  padding: 40px 30px;
+  max-width: 400px;
+  width: 100%;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glass-box h2 {
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.glass-box input[type="text"],
+.glass-box input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.glass-box input::placeholder { color: #ddd; }
+
+.neon-btn {
+  background: linear-gradient(135deg, #0f0, #0e9);
+  color: #111;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+.neon-btn:hover {
+  box-shadow: 0 0 10px #0f0, 0 0 20px #0f0, 0 0 30px #0e9;
+}
+
+/* Other page-specific styles remain unchanged
+   (features, hero, profile, footer, etc.)
+   Keep them as needed — not repeated here for brevity. */
+
+/* -----------------------------------
+   END: CROP CARE FULL CSS
+----------------------------------- */
+
+/* Header */
+header {
+  background-color: white;
+  box-shadow: var(--shadow);
+  padding: 15px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  height: 40px;
+}
+
+.logo h1 {
+  color: var(--dark-color);
+  font-size: 1.5rem;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+nav a {
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+nav a:hover {
+  color: var(--primary-color);
+}
+
+/* Main Content */
+main {
+  flex: 1;
+  padding: 30px 0;
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+              url('../images/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 100px 0;
+  text-align: center;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+/* Features Section */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  padding: 60px 0;
+}
+
+.feature-card {
+  background-color: var(--card-bg);
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.feature-card h3 {
+  color: var(--primary-color);
+  margin-bottom: 15px;
+}
+
+/* Price Ticker */
+.price-ticker {
+  background-color: var(--card-bg);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  margin: 30px 0;
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+}
+
+.price-item {
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  padding: 15px;
+  border-right: 1px solid #eee;
+}
+
+.price-item:last-child {
+  border-right: none;
+}
+
+.crop-name {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.price {
+  font-size: 1.2rem;
+  margin: 5px 0;
+}
+
+.location, .date {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Page Header */
+.page-header {
+  text-align: center;
+  padding: 40px 0;
+}
+
+.page-header h2 {
+  font-size: 2rem;
+  color: var(--dark-color);
+  margin-bottom: 10px;
+}
+
+/* Guide List */
+.guide-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  padding: 30px 0;
+}
+
+.guide-card {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  padding: 20px;
+  transition: transform 0.3s;
+}
+
+.guide-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  display: block;
+  object-fit: cover; /* optional */
+}
+
+
+.guide-card:hover {
+  transform: translateY(-5px);
+}
+
+.guide-card h3 {
+  color: var(--primary-color);
+  margin-bottom: 15px;
+}
+
+.read-more {
+  display: inline-block;
+  margin-top: 15px;
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+/* Market Tables */
+.tabs {
+  display: flex;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.tab-btn {
+  padding: 10px 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #666;
+  position: relative;
+}
+
+.tab-btn.active {
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.tab-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary-color);
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.price-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+}
+
+.price-table th, .price-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.price-table th {
+  background-color: var(--light-color);
+  color: var(--dark-color);
+}
+
+.price-table tr:hover {
+  background-color: #f5f5f5;
+}
+
+.fertilizer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.fertilizer-card {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  padding: 20px;
+}
+
+.fertilizer-card h3 {
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.btn-details {
+  padding: 8px 15px;
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+/* Problem List */
+.problem-list {
+  padding: 30px 0;
+}
+
+.problem-card {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.problem-card summary {
+  font-size: 1.1rem;
+  cursor: pointer;
+  outline: none;
+  font-weight: 500;
+}
+
+.problem-card[open] summary {
+  margin-bottom: 15px;
+}
+
+.solution-content {
+  padding: 15px;
+  background-color: var(--light-color);
+  border-radius: 4px;
+  margin-top: 15px;
+}
+
+.solution-content h4 {
+  color: var(--dark-color);
+  margin-bottom: 10px;
+}
+
+/* Auth Forms */
+.auth-form {
+  max-width: 500px;
+  margin: 50px auto;
+  background-color: var(--card-bg);
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.auth-form h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: var(--dark-color);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.form-group input[type="checkbox"] {
+  width: auto;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.form-actions {
+  margin-top: 30px;
+  text-align: center;
+}
+
+/* Profile Section */
+.profile-section {
+  max-width: 800px;
+  margin: 30px auto;
+}
+
+.profile-card {
+  background-color: var(--card-bg);
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.profile-info p {
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+
+.profile-actions {
+  margin-top: 30px;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+/* Flash Messages */
+.flash-messages {
+  margin: 20px 0;
+}
+
+.flash {
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+.flash.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.flash.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.flash.warning {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+}
+
+.flash.info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border: 1px solid #bee5eb;
+}
+
+/* Footer */
+footer {
+    background-color: #0ece28;
+    padding: 20px 0;
+    text-align: center;
+}
+
+footer .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-links {
+    margin-top: 10px;
+}
+
+.footer-links a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #333;
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  nav ul {
+    justify-content: center;
+    margin-top: 15px;
+    flex-wrap: wrap;
+  }
+  
+  .hero h2 {
+    font-size: 2rem;
+  }
+  
+  .hero p {
+    font-size: 1rem;
+  }
+  
+  .profile-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .price-ticker {
+    flex-direction: column;
+  }
+  
+  .price-item {
+    border-right: none;
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+  }
+  
+  .price-item:last-child {
+    border-bottom: none;
+  }
+}
+nav {
+    background: #2c3e50;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-right: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+nav a:hover {
+    background-color: #34495e;
+}
+/* Existing Search Bar */
+.search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px auto;
+  max-width: 600px;
+  padding: 10px;
+  background-color: var(--card-bg);
+  border-radius: 50px;
+  box-shadow: var(--shadow);
+}
+
+/* Label for Search Input */
+.search-bar label {
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-right: 15px;
+  font-size: 1rem;
+  user-select: none; /* Prevent label text selection */
+}
+
+/* Text input inside search bar */
+.search-bar input[type="text"] {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 50px 0 0 50px;
+  background-color: transparent;
+  color: var(--text-color);
+}
+
+/* Search button */
+.search-bar button {
+  padding: 10px 25px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 0 50px 50px 0;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.search-bar button:hover {
+  background-color: var(--secondary-color);
+}
+
+/* Placeholder text color */
+.search-bar input[type="text"]::placeholder {
+  color: #999;
+}
+
+/* Responsive tweak - label and input stack on small screens */
+@media (max-width: 480px) {
+  .search-bar {
+    flex-direction: column;
+    padding: 15px;
+  }
+  .search-bar label {
+    margin-right: 0;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+  }
+  .search-bar input[type="text"] {
+    border-radius: 50px;
+    padding: 12px 20px;
+  }
+  .search-bar button {
+    border-radius: 50px;
+    margin-top: 10px;
+    width: 100%;
+  }
+}
+
+/* Crop Carousel */
+.crop-carousel {
+  padding: 40px 0;
+  background-color: var(--light-color);
+}
+
+.carousel {
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel-track {
+  display: flex;
+  animation: scrollCarousel 30s linear infinite;
+  gap: 30px;
+}
+
+.carousel-item {
+  min-width: 300px;
+  flex: 0 0 auto;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.carousel-item img:hover {
+  transform: scale(1.05);
+}
+
+@keyframes scrollCarousel {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+.filter-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.filter-form select {
+    padding: 8px;
+    font-size: 1rem;
+}
+
+.search-input-wrapper {
+    position: relative;
+    flex-grow: 1;
+    max-width: 350px;
+}
+
+.search-input-wrapper input[type="text"] {
+    width: 100%;
+    padding: 8px 40px 8px 12px; /* leave space on right for icon */
+    font-size: 1rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.search-input-wrapper button.camera-btn {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 1.3rem;
+    color: #555;
+    padding: 0;
+}
+
+.camera-btn:hover {
+    color: #222;
+}
+
+.problem-card {
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 10px 15px;
+    background-color: #fafafa;
+}
+
+.problem-card summary {
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.solution-content {
+    margin-top: 10px;
+    padding-left: 15px;
+}
+.solution-crop-img {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 0 6px rgba(0,0,0,0.1);
+}
+.solution-images {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.solution-slide {
+    width: 350px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 0 6px rgba(0,0,0,0.1);
+    flex-shrink: 0;
+}
+
+/* Global Location Filter Dropdown */
+.location-filter-form select {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 2px solid #2c7a7b;      /* teal-ish border */
+    background-color: #e6fffa;      /* light teal background */
+    color: #234e52;                 /* dark teal text */
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.location-filter-form select:hover {
+    border-color: #285e61;
+    background-color: #b2f5ea;
+}
+
+.location-filter-form select:focus {
+    outline: none;
+    border-color: #1c4d4f;
+    background-color: #81e6d9;
+    color: #143a3b;
+}
+
+/* Location Dropdown inside Table */
+select.location-dropdown {
+    padding: 6px 10px;
+    border-radius: 5px;
+    border: 1.8px solid #3182ce;   /* blue border */
+    background-color: #ebf8ff;     /* very light blue background */
+    color: #2c5282;                /* dark blue text */
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+select.location-dropdown:hover {
+    background-color: #bee3f8;     /* lighter blue on hover */
+    border-color: #2b6cb0;
+}
+
+select.location-dropdown:focus {
+    outline: none;
+    border-color: #2c5282;
+    background-color: #90cdf4;
+    color: #1a365d;
+}
+
+.search-section {
+    margin: 30px auto;
+    max-width: 400px;
+    text-align: center;
+}
+
+.search-section input[type="text"] {
+    width: 70%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1.5px solid #3182ce;
+    font-size: 1rem;
+}
+
+.search-section button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #3182ce;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.search-section button:hover {
+    background-color: #2c5282;
+}
+
+.crop-details {
+    margin: 30px auto;
+    max-width: 600px;
+    background-color: #f0f8ff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+}
+
+.crop-details img.crop-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* -----------------------------------
+   Glassmorphism Login Page Styling
+----------------------------------- */
+
+body.login-page {
+  background: url('../images/login-bg.jpeg') no-repeat center center/cover;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-page {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.glass-box {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border-radius: 15px;
+  padding: 40px 30px;
+  max-width: 400px;
+  width: 100%;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glass-box h2 {
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.glass-box .form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.glass-box label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.glass-box input[type="text"],
+.glass-box input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 1rem;
+}
+
+.glass-box input[type="text"]::placeholder,
+.glass-box input[type="password"]::placeholder {
+  color: #ddd;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.neon-btn {
+  background: linear-gradient(135deg, #0f0, #0e9);
+  color: #111;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+.neon-btn:hover {
+  box-shadow: 0 0 10px #0f0, 0 0 20px #0f0, 0 0 30px #0e9;
+}
+
+.glass-box p {
+  margin-top: 15px;
+}
+
+.glass-box a {
+  color: #0f0;
+  text-decoration: underline;
+}
+
+/* -----------------------------------
+   Register Page (Same as Login)
+----------------------------------- */
+
+body.register-page {
+  background: url('../images/register-bg.jpeg') no-repeat center center/cover;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.register-page {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Reuse same .glass-box, .neon-btn, .form-group from login — no duplicate needed! */
+
+/* Problems & Solutions page style */
+.page-header {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.solution-filter {
+  display: flex;
+  justify-content: center;
+  margin: 1rem auto;
+  gap: 1rem;
+}
+
+.filter-form select,
+.filter-form input {
+  padding: 0.6rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.filter-form .camera-btn {
+  background: #4CAF50;
+  border: none;
+  color: #fff;
+  padding: 0.6rem 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.problem-list {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.problem-card {
+  background: #f9f9f9;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+.problem-card summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.solution-content {
+  margin-top: 1rem;
+}
+
+/* Solution images scroll horizontally */
+.solution-images {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  scroll-behavior: smooth;
+}
+
+.solution-images::-webkit-scrollbar {
+  height: 8px;
+}
+
+.solution-images::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.solution-crop-img {
+  flex: 0 0 auto;
+  width: 200px; /* adjust size as needed */
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.solution-crop-img:hover {
+  transform: scale(1.05);
+}
+
+
+.solution-crop-img {
+  width: 340px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.solution-content h4 {
+  margin: 0.8rem 0 0.3rem;
+}
+
+.solution-content p {
+  margin: 0 0 0.8rem;
+}
+
+
+.crop-carousel {
+  overflow: hidden;
+  width: 100%;
+  background: #f8f8f8; /* optional background */
+  padding: 1rem 0;
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  width: max-content;
+  animation: scrollLeft 20s linear infinite;
+}
+
+.carousel-item {
+  flex: 0 0 auto;
+  width: 200px; /* adjust size */
+  margin-right: 0; /* no gap! */
+}
+
+.carousel-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+/* Infinite scroll animation */
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+
+footer {
+  background-color: #0ece28;
+  padding: 20px 0;
+  text-align: center;
+  margin-top: auto; /* important for sticky footer in flex layout */
+}
+
+footer .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-links {
+  margin-top: 10px;
+}
+
+.footer-links a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #333;
+}

@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block title %}Market Prices{% endblock %}
+
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        select.location-dropdown {
+            padding: 5px 8px;
+            border: 1.5px solid #4CAF50;
+            border-radius: 4px;
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        select.location-dropdown:hover {
+            background-color: #c8e6c9;
+        }
+        select.location-dropdown:focus {
+            outline: none;
+            border-color: #1b5e20;
+            background-color: #a5d6a7;
+            color: #145214;
+        }
+
+        .location-filter-form select {
+            padding: 6px 10px;
+            border-radius: 5px;
+            border: 1.5px solid #333;
+            font-weight: 600;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+        .location-filter-form select:hover {
+            border-color: #555;
+        }
+    </style>
+</head>
+
+{% block content %}
+<section class="page-header">
+    <h2>Market Prices & Fertilizers</h2>
+    <p>Latest market prices for crops and fertilizers in different regions.</p>
+</section>
+
+<form method="get" action="{{ url_for('market') }}" class="location-filter-form" style="margin-bottom: 20px;">
+    <label for="location">Filter by Location:</label>
+    <select name="location" id="location" onchange="this.form.submit()">
+        <option value="">All Locations</option>
+        {% for loc in locations %}
+            <option value="{{ loc }}" {% if loc == selected_location %}selected{% endif %}>{{ loc }}</option>
+        {% endfor %}
+    </select>
+</form>
+
+<section class="market-tabs">
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="crop-prices">Crop Prices</button>
+        <button class="tab-btn" data-tab="fertilizers">Fertilizers</button>
+    </div>
+
+    <div class="tab-content active" id="crop-prices">
+        <table class="price-table">
+            <thead>
+                <tr>
+                    <th>Crop</th>
+                    <th>Price</th>
+                    <th>Location</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for price in prices %}
+                    <tr>
+                        <td>{{ price.crop_name }}</td>
+                        <td>₹{{ price.price }}/{{ price.unit }}</td>
+    <td>
+    <form method="get" action="{{ url_for('market') }}">
+        <input type="hidden" name="crop_name" value="{{ price.crop_name }}">
+        <select name="location" class="location-dropdown" onchange="this.form.submit()">
+            {% for loc in crop_locations[price.crop_name] %}
+                <option value="{{ loc }}" {% if loc == price.location %}selected{% endif %}>{{ loc }}</option>
+            {% endfor %}
+        </select>
+    </form>
+</td>
+
+
+                        <td>{{ price.date }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="tab-content" id="fertilizers">
+        <div class="fertilizer-grid">
+            {% for fertilizer in fertilizers %}
+                <div class="fertilizer-card">
+                    <h3>{{ fertilizer.name }}</h3>
+                    <p><strong>Type:</strong> {{ fertilizer.type }}</p>
+                    <p><strong>Composition:</strong> {{ fertilizer.composition }}</p>
+                    <button class="btn-details">View Details</button>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const tabBtns = document.querySelectorAll('.tab-btn');
+
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+            this.classList.add('active');
+            const tabId = this.getAttribute('data-tab');
+            document.getElementById(tabId).classList.add('active');
+        });
+    });
+});
+</script>
+{% endblock %}
